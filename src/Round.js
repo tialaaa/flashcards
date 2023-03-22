@@ -6,6 +6,7 @@ class Round {
     this.currentIndex = 0
     this.currentCard = this.deck.list[this.currentIndex]
     this.turns = 0
+    this.guesses = []
     this.incorrectGuesses = []
     this.currentTurn = null
   };
@@ -21,8 +22,9 @@ class Round {
       this.incorrectGuesses.push(this.currentCard.id)
     };
 
-    this.turns += 1;
-    this.currentIndex += 1;
+    this.guesses.push(guess);
+    this.turns++;
+    this.currentIndex++;
     this.currentCard = this.deck.list[this.currentIndex];
 
     return this.currentTurn.giveFeedback();
@@ -33,10 +35,10 @@ class Round {
   };
 
   endRound() {
-    const finalMessage = `** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`;
+    const outcomeMessage = `** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`;
 
-    console.log(finalMessage);
-    return finalMessage;
+    console.log(outcomeMessage);
+    return outcomeMessage;
   };
 };
 
