@@ -21,6 +21,10 @@ describe('Round', function() {
     round = new Round(deck);
   });
 
+  it('should instantiate an instance of Round using an argument of a Deck array', function() {
+    expect(round.currentCard).to.equal(card1);
+  });
+
   it('should begin with current card as the first card in the deck', function() {
     expect(round.currentCard).to.equal(card1);
   });
@@ -53,6 +57,16 @@ describe('Round', function() {
 
     round.takeTurn('something else');
     expect(round.returnCurrentCard()).to.equal(card3);
+  });
+
+  it('should record all guesses', function() {
+    expect(round.guesses).to.be.empty;
+
+    round.takeTurn('some animal');
+    round.takeTurn('some organ');
+    expect(round.guesses).to.have.lengthOf(2);
+    expect(round.guesses[0]).to.equal('some animal');
+    expect(round.guesses[1]).to.equal('some organ');
   });
 
   it('should store the card ID of only incorrect guesses in an array', function() {
