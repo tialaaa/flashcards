@@ -46,7 +46,7 @@ describe('Turn', function() {
     const turnA = new Turn('capybara', card);
     const turnB = new Turn('sea otter', card);
 
-    expect(turnA.giveFeedback()).to.equal('Incorrect!');
-    expect(turnB.giveFeedback()).to.equal('Correct!');
+    expect(turnA.giveFeedback()).to.equal('incorrect!');
+    expect(turnB.giveFeedback()).to.equal('correct!');
   })
 });
