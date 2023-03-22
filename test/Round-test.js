@@ -29,10 +29,10 @@ describe('Round', function() {
     expect(round.returnCurrentCard()).to.equal(card1);
   });
 
-  // it('should create a new instance of Turn when player takes a turn', function() {
-  //   const round = new Round(deck);
-  //   // is this test needed? how to test it?
-  // });
+  it('should create a new instance of Turn when player takes a turn', function() {
+    round.takeTurn('horse');
+    expect(round.currentTurn).to.be.an.instanceOf(Turn);
+  });
 
   it('should increase the turns count, regardless of whether the guess is correct or incorrect', function() {
     expect(round.turns).to.equal(0);
@@ -44,9 +44,27 @@ describe('Round', function() {
 
   it('should update the current card to be the next card in the deck', function() {
     expect(round.returnCurrentCard()).to.equal(card1);
-    console.log(round.currentIndex)
 
     round.takeTurn('something random');
-    // expect(round.returnCurrentCard()).to.equal(card2);
+    expect(round.returnCurrentCard()).to.equal(card2);
+
+    round.takeTurn('something else');
+    expect(round.returnCurrentCard()).to.equal(card3);
+  });
+
+  it('should store the card ID of incorrect guesses in an array', function() {
+    expect(round.incorrectGuesses).to.be.empty;
+
+    round.takeTurn('donkey');
+    expect(round.incorrectGuesses[0]).to.equal(card1.id);
+
+    round.takeTurn('gallbladder');
+    expect(round.incorrectGuesses).to.have.lengthOf(1);
+  });
+
+  it('should return feedback regarding whether the guess is incorrect or correct', function() {
+    expect(round.takeTurn('sea otter')).to.equal('Correct!');
+
+    expect(round.takeTurn('heart')).to.equal('Incorrect!');
   });
 });

@@ -2,10 +2,12 @@ const Turn = require('../src/Turn');
 
 class Round {
   constructor(deck) {
-    this.currentCard = deck.list[0]
+    this.deck = deck
+    this.currentIndex = 0
+    this.currentCard = this.deck.list[this.currentIndex]
     this.turns = 0
     this.incorrectGuesses = []
-    this.currentIndex = 0
+    this.currentTurn = null
   };
 
   returnCurrentCard() {
@@ -13,18 +15,18 @@ class Round {
   };
 
   takeTurn(guess) {
-    const newTurn = new Turn(guess, this.currentCard);
+    this.currentTurn = new Turn(guess, this.currentCard);
+
+    // should current guess string be stored?
+    if (!this.currentTurn.evaluateGuess()) {
+      this.incorrectGuesses.push(this.currentCard.id)
+    };
 
     this.turns += 1;
+    this.currentIndex += 1;
+    this.currentCard = this.deck.list[this.currentIndex];
 
-    // this.currentCard changes to next
-    // identify which index position is currentCard
-    // add one to that index & reassign this to currentCard
-    // this.currentIndex = deck.list.indexOf(this.currentCard);
-    
-    // calls turn.evaluateGuess; If incorrect, stores the ID in a new array incorrectGuesses
-    
-    // calls giveFeedback
+    return this.currentTurn.giveFeedback()
   };
 };
 
