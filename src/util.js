@@ -30,21 +30,17 @@ const confirmUpdate = (id, round) => {
 }
 
 async function main(round) {
-  const startTime = Date.now();
-
   const currentRound = await getRound(round);
   const getAnswer = await inquirer.prompt(genList(currentRound));
   const getConfirm = await inquirer.prompt(confirmUpdate(getAnswer.answers, round));
 
     if(!round.returnCurrentCard()) {
-      round.endRound();
-
       const endTime = Date.now();
-      const durationInMS = endTime - startTime;
+      const durationInMS = endTime - round.startTime;
       const minutes = Math.floor((durationInMS / 1000) / 60);
       const seconds = Math.round((durationInMS / 1000) % 60);
-      console.log(durationInMS)
-      console.log(`It took ${minutes} minutes and ${seconds} seconds to play this round.`);
+      
+      round.endRound(minutes, seconds);
     } else {
       main(round);
     }
