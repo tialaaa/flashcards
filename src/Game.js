@@ -12,10 +12,17 @@ class Game {
 
   start() {
     const cardsArray = prototypeQuestions.map(question => new Card(question.id, question.question, question.answers, question.correctAnswer));
-
     const deck = new Deck(cardsArray);
-
     this.currentRound = new Round(deck);
+  };
+
+  printMessage(deck, round) {
+    console.log(`Welcome to FlashCards! You are playing with ${deck.countCards()} cards.
+-----------------------------------------------------------------------`)
+  };
+
+  printQuestion(round) {
+      util.main(round);
   };
 
   testCreateCardsArray() {
@@ -26,7 +33,6 @@ class Game {
 
   testCreateDeck() {
     const cardsArray = prototypeQuestions.map(question => new Card(question.id, question.question, question.answers, question.correctAnswer));
-
     const deck = new Deck(cardsArray);
 
     return deck;
@@ -34,20 +40,10 @@ class Game {
 
   testCreateRound() {
     const cardsArray = prototypeQuestions.map(question => new Card(question.id, question.question, question.answers, question.correctAnswer));
-
     const deck = new Deck(cardsArray);
     const round = new Round(deck);
 
     return round;
-  };
-
-  printMessage(deck, round) {
-    console.log(`Welcome to FlashCards! You are playing with ${deck.countCards()} cards.
------------------------------------------------------------------------`)
-  };
-
-  printQuestion(round) {
-      util.main(round);
   };
 };
 
