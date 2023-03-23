@@ -39,14 +39,14 @@ describe('Turn', function() {
   it('should validate if player\'s guess matches the correct answer of current card', function() {
     expect(turn1.evaluateGuess()).to.equal(false);
 
-    const turn2 = new Turn('sea otter', card);
-    expect(turn2.evaluateGuess()).to.equal(true);
+    turn1.guess = 'sea otter';
+    expect(turn1.evaluateGuess()).to.equal(true);
   });
 
   it('should return a feedback message telling if the guess is correct or not', function() {
     expect(turn1.giveFeedback()).to.equal('incorrect!');
     
-    const turn2 = new Turn('sea otter', card);
-    expect(turn2.giveFeedback()).to.equal('correct!');
+    turn1.guess = 'sea otter';
+    expect(turn1.giveFeedback()).to.equal('correct!');
   });
 });
