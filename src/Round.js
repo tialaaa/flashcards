@@ -9,6 +9,7 @@ class Round {
     this.guesses = []
     this.incorrectGuesses = []
     this.currentTurn = null
+    this.startTime = Date.now()
   };
 
   returnCurrentCard() {
@@ -34,8 +35,8 @@ class Round {
     return Math.round((1 - (this.incorrectGuesses.length / this.turns)) * 100);
   };
 
-  endRound() {
-    const outcomeMessage = `** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`;
+  endRound(minutes, seconds) {
+    const outcomeMessage = `** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly! It took ${minutes} minutes and ${seconds} seconds to play this round.`;
 
     console.log(outcomeMessage);
     return outcomeMessage;
