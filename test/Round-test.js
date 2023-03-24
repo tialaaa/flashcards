@@ -101,13 +101,13 @@ describe('Round', function() {
     round.takeTurn('walrus');
     round.takeTurn('gallbladder');
     round.takeTurn('Bob');
-    expect(round.endRound()).to.equal('** Round over! ** You answered 33% of the questions correctly!');
+    expect(round.endRound()).to.equal('** Round over! ** You answered 33% of the questions correctly! It took undefined minutes and undefined seconds to play this round.');
   });
 
   it('should always display the correct final score when the round ends', function() {
     round.takeTurn('sea otter');
     round.takeTurn('gallbladder');
     round.takeTurn('Fitzgerald');
-    expect(round.endRound()).to.equal('** Round over! ** You answered 100% of the questions correctly!');
+    expect(round.endRound()).to.equal('** Round over! ** You answered 100% of the questions correctly! It took undefined minutes and undefined seconds to play this round.');
   });
 });
