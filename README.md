@@ -14,7 +14,7 @@ This interative flash cards application allows users to test their knowledge of 
 ### Instructions:
 ##### Setup:
 - Clone this repo to your local machine: [FlashCards](https://github.com/tialaaa/flashcards)
-- In the terminal, navigate using `cd` into the repo's directory.
+- In the terminal, navigate using `cd` into the repo's root directory.
 - Run `npm install` to install testing dependencies.
 - Run `node index.js` to start the program. You will see a welcome message and the first question appears.
 
@@ -23,6 +23,9 @@ This interative flash cards application allows users to test their knowledge of 
 - Press return for the next question prompt.
 - Continue until you receive your final score.
 - Repeat until you master the subject!
+
+##### View Testing:
+- Run `npm test` from the root directory.
 
 ### Context:
 Completed over three days during the beginning of module 2 at the Turing School. Goals for this project included:
